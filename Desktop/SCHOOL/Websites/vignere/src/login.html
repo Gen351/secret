@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Book Tracker</title>
+
+  <script type="module" src="../scripts/db.js" defer></script>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+        }
+        .stylized {
+            margin-top: 15vh;
+            display: block;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .fields {
+            margin: 2vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+    </style>
+
+</head>
+
+<body>
+  
+    <form class="stylized">
+        <div class="fields">
+            <input id="user_input" class="inputs" type="text" placeholder="Name" required>
+            <input id="pass_input" class="inputs" type="text" placeholder="Author" required>
+            <input id="pass_input" class="inputs" type="text" placeholder="Read count" required>
+            <input id="pass_input" class="inputs" type="text" placeholder="Comment" required>
+            <button type="button" id="getBtn">Confirm</button>
+        </div>
+
+    </form>
+
+    <div class="enc_result">
+        <p id="enc_result_field"></p>
+    </div>
+
+</body>
+</html>

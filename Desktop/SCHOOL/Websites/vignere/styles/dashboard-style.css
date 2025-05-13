@@ -1,0 +1,186 @@
+/* Global Reset + Font */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Arial', sans-serif; /* A clean, readable font */
+    background-color: #ffda9f; /* Light beige background - cozy */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    min-height: 100vh;
+    align-items: stretch; /* Make sidebar and content the same height */
+}
+
+.container {
+    display: flex;
+    width: 100%;
+}
+
+/* Toggle Button (for smaller screens) */
+.toggle-btn {
+    background-color: #6b5d53; /* Burnt orange - autumnal */
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    z-index: 20; /* Above the sidebar when toggled */
+    display: none; /* Hidden on larger screens */
+}
+
+@media (max-width: 768px) {
+    .toggle-btn {
+        display: block;
+    }
+}
+
+/* Sidebar */
+.sidebar {
+    background-color: #e6a756; /* Warm orange - autumnal */
+    color: #5c4033; /* Deep brown text */
+    width: 250px;
+    padding-top: 20px;
+    transition: transform 0.3s ease-in-out;
+    transform: translateX(0);
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    border-right: 2px solid #d98850; /* Subtle border */
+}
+
+.sidebar.hidden {
+    transform: translateX(-250px);
+}
+
+.sidebar-header {
+    padding: 15px 20px;
+    text-align: left; /* Align close button and text */
+    border-bottom: 1px solid #d98850;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+#current-user-name {
+    display: flex;
+    font-size: 1.3rem;
+    margin: 0;
+}
+
+/* Close Button (inside sidebar) */
+.close-btn {
+    background: none;
+    border: none;
+    color: #5c4033;
+    font-size: 1.5rem;
+    cursor: pointer;
+    padding: 5px;
+    margin-left: auto; /* Push to the right */
+}
+
+.close-btn:hover {
+    color: #3a2c2a;
+}
+
+.sidebar-nav ul {
+    list-style: none;
+    padding: 0 10px;
+    margin: 0;
+}
+
+.sidebar-nav ul li a {
+    display: block;
+    padding: 12px 15px;
+    text-decoration: none;
+    color: #5c4033;
+    transition: background-color 0.2s ease-in-out;
+    border-radius: 5px;
+    margin-bottom: 5px;
+    background-color: #f2b66d; /* Lighter orange for links */
+}
+
+.sidebar-nav ul li a:hover {
+    background-color: #d98850;
+    color: #fff;
+}
+
+.sidebar-footer {
+    padding: 15px 20px;
+    text-align: center;
+    margin-top: auto;
+    border-top: 1px solid #d98850;
+}
+
+.sidebar-footer button {
+    background-color: #a64d3d; /* Rusty brown for logout */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 15px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.sidebar-footer button:hover {
+    background-color: #8c3d30;
+}
+
+/* Main Content */
+#content {
+    flex-grow: 1;
+    padding: 20px;
+    padding-left: 270px; /* Adjust for sidebar width */
+    transition: padding-left 0.3s ease-in-out;
+    background-color: #ffda9f; /* Match body background */
+}
+
+#content.sidebar-hidden {
+    padding-left: 20px;
+}
+
+/* Autumn Scene (Example - replace with your actual assets) */
+.autumn-scene {
+    margin-top: 20px;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.autumn-scene img {
+    max-width: 100px;
+    height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .sidebar {
+        transform: translateX(-250px);
+        height: 100%;
+    }
+
+    .sidebar.hidden {
+        transform: translateX(0);
+    }
+
+    #content {
+        padding-left: 20px;
+    }
+
+    #content.sidebar-hidden {
+        padding-left: 270px;
+    }
+}
