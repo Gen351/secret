@@ -9,77 +9,113 @@
 <style>
     @import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-straight/css/uicons-solid-straight.css');
     @import url('https://fonts.googleapis.com/css2?family=Mynerve&display=swap');
+    @import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-bold-rounded/css/uicons-bold-rounded.css');
+    @import url('https://cdn-uicons.flaticon.com/3.0.0/uicons-solid-rounded/css/uicons-solid-rounded.css');
     * {
         color:rgb(248, 84, 84);
         font-size: 1.5em;
 
         font-family: "Mynerve", cursive;
-        -webkit-text-stroke: 2px rgb(193, 160, 160);
+        -webkit-text-stroke: 2px rgb(196, 78, 78);
+    }
+
+    html, body {
+        overflow: hidden;
     }
 
     body {
-        overflow-y: none;
-        overflow-x: none;
-        background-color: white;
+        position: relative;
 
-        justify-content: center;
-        align-items: center;
+        background-color: rgb(246, 238, 227);
 
         margin: 0px;
         padding: 2.5vh;
-        height: 95vh;
+        height: 92vh;
 
-        max-width: 100vw;
-        max-height: 100vh;
+        border: 1.5vh dashed red;
+        border-radius: 2vh;
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    #init {
+        -webkit-text-stroke: 10px rgb(196, 78, 78);
+
+        font-size: 3em;
+        z-index: 10000;
     }
 </style>
 
 <body>
-    <i class="fi fi-ss-heart"></i>
+    <i class="fi fi-ss-heart" id="init"></i>
 
     <script>
         let clicks = 0;
-        let _____ = document.querySelectorAll("i");
+        let can = true;
 
-        async function h() {
-            _____ = document.querySelectorAll("i");
-            _____.forEach((el) => {
-                el.addEventListener('click', () => {
-                    if(clicks++ > 10) ___();
-                    else __();
-                });
+        document.querySelector("i")
+            .addEventListener('click', () => {
+                if(clicks > 6 && can) ___();
+                else __();
             });
-        }
 
         async function __() {
-            const x = Math.random() * (window.innerWidth);
-            const y = Math.random() * (window.innerHeight);
+            const x = Math.random() * window.innerWidth;
+            const y = Math.random() * window.innerHeight;
+            const rotation = Math.floor(Math.random() * 360);
 
             const ____ = document.createElement('div');
             ____.style.position = 'absolute';
             ____.style.left = `${x}px`;
             ____.style.top = `${y}px`;
-            
-            const hue = Math.floor((x + y) % 360); // keep it in 0–359
+
+            const hue = Math.floor((x + y) % 360);
             const clr = `hsl(${hue}, 80%, 60%)`;
 
-            ____.innerHTML = `<i class="fi fi-ss-heart" style="color:${clr}"></i>`;
+            const rand = (Math.floor(x) % 5);
+            if (rand == 3 || rand == 4) {
+                ____.innerHTML = `<i class="fi fi-ss-heart" style="color: ${clr}; transform: rotate(${rotation}deg); display: inline-block;"></i>`;
+            } else if (rand == 2) {
+                const styl = (Math.floor(y) % 2 == 0
+                    ? `color: hsl(17, 99%, 62%);`
+                    : `color: rgb(10, 255, 116);`);
+                ____.innerHTML = `<i class="fi fi-br-daisy" style="${styl} transform: rotate(${rotation}deg); display: inline-block;"></i>`;
+            } else if (rand == 1) {
+                ____.innerHTML = `<i class="fi fi-sr-paw" style="color: rgb(218, 218, 218); transform: rotate(${rotation}deg); display: inline-block;"></i>`;
+            } else {
+                ____.innerHTML = `<i class="fi fi-br-snowflake" style="color: hsl(192, 80%, 60%); transform: rotate(${rotation}deg); display: inline-block;"></i>`;
+            }
+
             document.body.appendChild(____);
-            console.log(clicks);
-            h();
+            if(clicks < 500) {
+                ____.addEventListener('click', () => {
+                    if (clicks > 6 && can) ___();
+                    else __();
+                });
+                console.log(clicks++);
+            }
         }
 
+
         async function ___() {
-            for(;clicks <= 1000; clicks++) {
-                __()
-                await delay(50);
+            if(clicks >= 1000) {
+                can = false;
+                return;
             }
+            for(let i = 0 ; i < 50; i++) {
+                can = false;
+                await delay(20);
+                if(clicks % 200 == 0) confirm("Miss u");
+                clicks++;
+                __();
+            }
+            can = true;
         }
 
         function delay(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         }
-        h();
     </script>
 </body>
 
